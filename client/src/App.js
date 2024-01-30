@@ -12,7 +12,9 @@ import axios from 'axios';
 
 
 function App() {
-const[cards, setCards] = useState([])
+  const[cards, setCards] = useState([])
+  const [filteredCards, setFilteredCards] = useState(cards);
+
 
 const[schools, setSchool] = useState([
   { name: 'Грифиндор'},
@@ -29,14 +31,19 @@ useEffect(()=>{
 
   axios.get('http://localhost:3001/heroes').then((data)=>{
     setCards(data.data);
+    setFilteredCards(data.data)
   });
 }, [])
 
   return (
     <div className="App">
-      <Header schools={schools}/>
+      <Header schools={schools} 
+      setCards={setCards}
+      cards={cards}
+      filteredCards={filteredCards}
+      setFilteredCards={setFilteredCards}/>
       <hr/>
-      <CardList cards={cards}/>
+      <CardList cards={filteredCards}/>
     </div>
   );
 }

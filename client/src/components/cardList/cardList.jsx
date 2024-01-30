@@ -5,11 +5,12 @@ function CardList({cards}) {
         <div className="container">
             {
                 cards && cards.map((card)=>{
+                    
                     return <Card img={'http://localhost:3001/img/'+card.img} 
                                  name={card.name}
                                  actor={card.actor}
                                  gender={card.gender}
-                                 house={card.school.name}
+                                 school={card.school.name}
                                  wand={card.wand}
                                  alive={card.alive}
                                  />;

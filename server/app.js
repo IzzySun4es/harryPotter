@@ -23,6 +23,17 @@ app.get('/heroes', (req, res) => {
     
 })
 
+app.get('/heroesFilterBySchool/:id', (req, res) =>{
+    const id = req.params.id;
+    Heroes.findAll({
+        where: {school_id: id},
+        include: Schools
+    }).then((heroes) => {
+        res.json(heroes);
+    })
+
+});
+
 sequelize.sync().then(()=>{
     app.listen(PORT, ()=>{
         console.log("Сервер запущен. Порт: ", PORT);
